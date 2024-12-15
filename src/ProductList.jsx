@@ -4,10 +4,12 @@ import CartItem from './CartItem';
 //imported funtion useDispatch and useSelector by Puccetti Nicola
 import {useDispatch,useSelector} from 'react-redux';
 import {addItem} from './CartSlice'
+import {togAddedToCart} from './ToggleSlice';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const cart= useSelector(state=>state.cart.items);
+    const toggleBtn= useSelector(state=>state.toggleBtnCart.addedToCart);
     const dispatch = useDispatch();
     const plantsArray = [
         {
@@ -220,12 +222,10 @@ function ProductList() {
     //implemented 03.12.24 variable addedToCart for manage article already added to cart
     //implemented function handleAddToCart
     //by Puccetti Nicola
-    const [addedToCart,setAddedToCart]=useState({});
+    //const [addedToCart,setAddedToCart]=useState(useSelector(state=>state.toggleBtnCart.addedToCart));
     const handleAddToCart = (product)=>{
         dispatch(addItem(product));
-        setAddedToCart((prevState)=>({
-            ...prevState,[product.name]:true,
-        }))
+        dispatch(togAddedToCart(product));
     }
 
 
@@ -307,7 +307,7 @@ const handlePlantsClick = (e) => {
                                             <h2 className="product-price">{item.cost}</h2>
                                         </div>
                                     </div>
-                                    <button className="product-button-green" onClick={()=>handleAddToCart(item)}>
+                                    <button className="product-button-green" onClick={()=>handleAddToCart(item)} disabled={toggleBtn[item.name]? true:false}>
                                         Add to Cart
                                     </button>
                                 </div>

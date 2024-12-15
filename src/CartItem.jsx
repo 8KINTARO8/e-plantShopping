@@ -2,10 +2,11 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
-
+import {togRemovedFromCart} from './ToggleSlice'
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
+  const toggleBtn= useSelector(state=>state.toggleBtnCart.addedToCart);
 
   // Calculate total amount for all products in the cart
   //Puccetti nicola implemented body of function calculateTotalAmount
@@ -41,11 +42,13 @@ const CartItem = ({ onContinueShopping }) => {
    }
    else{
         dispatch(removeItem(item));
+        dispatch(togRemovedFromCart(item));
    }
   };
 
   const handleRemove = (item) => {
     dispatch(removeItem(item));
+    dispatch(togRemovedFromCart(item));
   };
 
   // Calculate total cost based on quantity for an item
