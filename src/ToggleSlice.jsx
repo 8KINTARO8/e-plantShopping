@@ -1,3 +1,11 @@
+/*implemented by Developer Puccetti Nicola
+* version 1.0.0 
+* this component use reduxjs/toolkit and your createSlice
+* for build and manage toggle for button by value true or false
+* it contains a value of reference for other components
+* if used it always has to be imported in store component
+* end its reducer into respective components that use it 
+*/
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState={
