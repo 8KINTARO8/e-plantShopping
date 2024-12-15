@@ -11,7 +11,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite build; vite preview --host"
   },
-  "homepage": "https://8kintaro8.github.io/e-plantshopping",
+  "homepage": "https://8kintaro8.github.io/e-plantShopping",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "npm": "^10.9.2",
